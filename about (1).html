@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>about · 一期一会</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1814;
+  --paper:#f5f0e8;
+  --muted:#8a8070;
+  --accent:#c8a96e;
+  --red:#c0392b;
+  --line:rgba(26,24,20,0.1);
+  
+  --glass:rgba(245,240,232,0.95);
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.75rem;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:0.5px solid var(--line)}
+.nav-logo{font-family:'Noto Serif JP',serif;font-size:1rem;font-weight:300;letter-spacing:0.1em;text-decoration:none;color:var(--ink)}
+.nav-back{font-size:11px;letter-spacing:0.13em;text-transform:uppercase;text-decoration:none;color:var(--muted);transition:color 0.15s}
+.nav-back:hover{color:var(--ink)}
+
+/* HERO */
+.about-hero{min-height:55svh;display:flex;flex-direction:column;justify-content:flex-end;padding:7rem 1.75rem 3rem;position:relative;overflow:hidden;border-bottom:0.5px solid var(--line)}
+
+.window-bg{position:absolute;inset:0;pointer-events:none;z-index:0}
+
+/* string animation handled by JS */
+
+.hero-content{position:relative;z-index:2}
+.hero-eyebrow{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.about-title{font-family:'DM Serif Display',serif;font-size:clamp(1.7rem,7vw,2.8rem);line-height:1.25;margin-bottom:0.5rem}
+.about-title em{font-style:italic;color:var(--muted)}
+.about-sub{font-size:13px;letter-spacing:0.06em;color:var(--muted);margin-top:0.75rem}
+
+/* BODY */
+section{padding:3.5rem 1.75rem;border-bottom:0.5px solid var(--line)}
+.eyebrow{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.75rem}
+
+/* window emphasis block */
+.window-block{background:white;border:0.5px solid var(--line);padding:1.75rem;margin-bottom:2.5rem;position:relative;overflow:hidden}
+.window-block::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent)}
+.window-block-title{font-family:'DM Serif Display',serif;font-size:1.1rem;margin-bottom:0.75rem}
+.window-block-text{font-size:14px;line-height:1.8;color:#4a4540}
+
+.prose{font-family:'DM Serif Display',serif;font-size:clamp(1rem,3.5vw,1.2rem);line-height:1.78;color:var(--ink);max-width:600px}
+.prose em{font-style:italic;color:var(--muted)}
+.prose+.prose{margin-top:1.25rem}
+
+/* string narrative */
+.string-narrative{margin:2.5rem 0;padding:1.5rem;border-left:1.5px solid var(--red);background:rgba(192,57,43,0.03)}
+.string-narrative-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem;opacity:0.75}
+.string-narrative-text{font-family:'DM Serif Display',serif;font-size:1rem;line-height:1.75;color:var(--ink)}
+.string-narrative-text em{font-style:italic;color:var(--muted)}
+
+.four-q{display:grid;gap:2rem}
+.q-item{border-left:0.5px solid var(--accent);padding-left:1.1rem}
+.q-label{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:0.55rem}
+.q-text{font-size:14px;line-height:1.72;color:var(--ink)}
+
+.details-grid{display:grid;gap:1.1rem;margin-top:2rem}
+.det{display:flex;gap:1rem;font-size:13px;line-height:1.6}
+.det-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);min-width:76px;padding-top:1px}
+.det-val{color:var(--ink)}
+
+.back-btn{display:inline-block;margin-top:2.5rem;background:var(--ink);color:var(--paper);font-family:'DM Serif Display',serif;font-size:1rem;padding:0.85rem 2rem;text-decoration:none;letter-spacing:0.02em;transition:opacity 0.2s}
+.back-btn:hover{opacity:0.8}
+
+footer{padding:3rem 1.75rem 4.5rem;text-align:center}
+.footer-kanji{font-family:'Noto Serif JP',serif;font-size:1.3rem;font-weight:300;letter-spacing:0.12em;margin-bottom:0.4rem}
+.footer-sub{font-size:11px;letter-spacing:0.08em;color:var(--muted);line-height:1.9}
+
+@media(min-width:600px){
+  .nav,.about-hero,section,footer{padding-left:2.5rem;padding-right:2.5rem}
+  .four-q{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<svg id="page-string" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;overflow:visible">
+  <path id="string-path" fill="none" stroke="#c0392b" stroke-width="1.4" stroke-linecap="round" opacity="0.35"/>
+</svg>
+<script>
+(function(){
+  function draw(){
+    var W=window.innerWidth,H=window.innerHeight;
+    var p=document.getElementById('string-path');
+    var x0=-8,y0=H*0.08;
+    var x8=W+8,y8=H*0.97;
+    var d='M '+x0+' '+y0
+         +' C '+(W*0.15)+' '+(H*0.25)+', '+(W*0.05)+' '+(H*0.6)+', '+(W*0.45)+' '+(H*0.55)
+         +' C '+(W*0.75)+' '+(H*0.5)+', '+(W*0.9)+' '+(H*0.82)+', '+x8+' '+y8;
+    p.setAttribute('d',d);
+  }
+  draw();
+  window.addEventListener('resize',draw);
+  var path=document.getElementById('string-path');
+  var len=1600;
+  path.style.strokeDasharray=len;
+  path.style.strokeDashoffset=len;
+  setTimeout(function(){
+    path.style.transition='stroke-dashoffset 3s cubic-bezier(0.16,1,0.3,1)';
+    path.style.strokeDashoffset=0;
+  },150);
+})();
+</script>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">一期一会</a>
+  <a href="index.html" class="nav-back">← back to journal</a>
+</nav>
+
+<div class="about-hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">about this project</p>
+    <h1 class="about-title">A window.<br>A song.<br><em>A fleeting moment.</em></h1>
+    <p class="about-sub">N25 · third floor · mechanical engineering corridor</p>
+  </div>
+</div>
+
+<!-- the window -->
+<section>
+  <p class="eyebrow">the window</p>
+
+  <div class="window-block">
+    <p class="window-block-title">Third floor, N25, mechanical engineering side.</p>
+    <p class="window-block-text">Most people in this building never come to this corridor. It belongs to the mechanical engineering students — the industrial design side rarely wanders here. The hallway is quieter than the ones below, utilitarian, unremarkable. And at the end of it, facing out, there is a window.<br><br>From up here you see rooftops — flat concrete slabs, vents, the geometry of the campus seen from above. A few trees break the pattern. Students pass in the distance, small below. The sky takes up more space than it does on the ground.<br><br>Nobody designed this view to be looked at. But it is there, every day, changing with the light and the season, waiting for someone to stop.<br><br>Hanging at the window: a pair of headphones. Attached to an mp3 player with songs already loaded — chosen for this view, this light, this corridor that most people never enter. Each file is named after a lyric from the song, not its title. You scroll through and read fragments of feeling before you even press play. Instrumentals are named after the feeling they left — not words from the song, but words for what the song does. You just have to put them on.</p>
+  </div>
+
+  <p class="prose">This corridor has a protocol. People move through it with purpose — to the lab, to a class, between buildings. It is a connector, not a place. The window is incidental to that movement. Nobody stops.</p>
+  <p class="prose" style="margin-top:1.25rem">The gesture asks: <em>what if someone stopped?</em></p>
+</section>
+
+<!-- the string -->
+<section>
+  <p class="eyebrow">the red string</p>
+  <div class="string-narrative">
+    <p class="string-narrative-label">musubi · 結び · the red string of fate</p>
+    <p class="string-narrative-text">In Japanese belief, an invisible red thread connects people who are meant to meet — tied at the finger, stretching across distance and time, unbreakable.<br><br>The red string posted near this QR code is not decoration. It is an instruction: <em>follow it</em> — up the stairs to the third floor, along the mechanical engineering corridor, to the window at the end. There you will find headphones hanging. An mp3 player. Songs already chosen for this exact view.<br><br>Put them on. Look out. Stay for one song.<br><br>You were not meant to be here by accident. <em>Something brought you.</em></p>
+  </div>
+</section>
+
+<!-- four questions -->
+<section>
+  <p class="eyebrow">the four questions</p>
+  <div class="four-q">
+    <div class="q-item">
+      <p class="q-label">What is the protocol of this site?</p>
+      <p class="q-text">The third-floor N25 mechanical engineering corridor is transitional and semi-exclusive — industrial design students rarely enter. Those who do move fast. The window at the end of the hall is incidental to everyone's path. Nobody has a reason to stop there. The view — rooftops, trees, sky — goes largely unseen.</p>
+    </div>
+    <div class="q-item">
+      <p class="q-label">What did I want to change or reveal?</p>
+      <p class="q-text">That this window has a view worth stopping for — and that music can make a place feel intentional. Everyone in this corridor is already listening to something privately. The gesture makes one shared soundtrack for this window, and asks: what does it feel like to look out from here with a song chosen for exactly this moment?</p>
+    </div>
+    <div class="q-item">
+      <p class="q-label">Why this addition and not something else?</p>
+      <p class="q-text">Headphones and an mp3 player are physically modest but experientially total. They don't alter the space — they alter the person standing in it. Each song is named after its best lyric, so scrolling through the player is already an experience before anything plays. And the songs keep growing: anyone who scans the QR code can request a song, and approved requests are downloaded, renamed to their lyric, and added to the player — so the selection builds with every person who comes here.</p>
+    </div>
+    <div class="q-item">
+      <p class="q-label">What impact did it bring?</p>
+      <p class="q-text">Someone followed the string. Someone put on the headphones and stood at this window long enough to finish a song — something they would never have done otherwise. This journal is where they, and everyone after them, leave a trace of that moment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- site details -->
+<section>
+  <p class="eyebrow">site details</p>
+  <div class="details-grid">
+    <div class="det"><span class="det-label">location</span><span class="det-val">N25 building, third floor, mechanical engineering corridor — window at the end of the hall, facing the campus rooftops</span></div>
+    <div class="det"><span class="det-label">protocol</span><span class="det-val">High transit, low lingering. Primarily mechanical engineering students. Industrial design students rarely enter. Earphones almost always in.</span></div>
+    <div class="det"><span class="det-label">view</span><span class="det-val">Campus rooftops, trees, fragments of sky. Students passing far below. The geometry of the campus seen from above.</span></div>
+    <div class="det"><span class="det-label">file names</span><span class="det-val">Songs with lyrics are named after a line from the song. Instrumentals are named after the feeling they left. No prefixes — just phrases, all in the same voice.</span></div>
+    <div class="det"><span class="det-label">gesture</span><span class="det-val">A red string leading to the window. A pair of headphones and an mp3 player, hanging there, with songs already downloaded. A QR code to leave your trace and request songs that get added to the player.</span></div>
+    <div class="det"><span class="det-label">name</span><span class="det-val">一期一会 (ichigo ichie) — one chance in a lifetime</span></div>
+  </div>
+  <a href="index.html" class="back-btn">go to the journal</a>
+</section>
+
+<footer>
+  <p class="footer-kanji">一期一会</p>
+  <p class="footer-sub">one chance in a lifetime<br>N25 · third floor · mechanical engineering corridor</p>
+</footer>
+
+</body>
+</html>
