@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>一期一会</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600&family=Hanken+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>(function(){try{var t=localStorage.getItem('ichigo_type')||'garamond';if(t)document.documentElement.dataset.type=t;var th=localStorage.getItem('ichigo_theme');if(th)document.documentElement.dataset.theme=th;var s=localStorage.getItem('ichigo_string')||'subtle',M={subtle:[0.22,0.34],medium:[0.4,0.62],vivid:[0.6,0.92]},m=M[s]||M.subtle;document.documentElement.style.setProperty('--string-glow-op',m[0]);document.documentElement.style.setProperty('--string-core-op',m[1]);}catch(e){}})();</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --night:#15120e;            /* deepest warm ink */
+  --night-2:#1c1813;          /* lifted panel base */
+  --paper:#f0e9da;            /* warm off-white text */
+  --paper-dim:#d8cfbd;
+  --muted:#9a8f7c;            /* warm grey */
+  --muted-2:#6f6657;
+  --amber:#e6b667;            /* luminous gold */
+  --amber-soft:rgba(230,182,103,0.16);
+  --vermilion:#ef5538;        /* the red string */
+  --vermilion-glow:rgba(239,85,56,0.55);
+  --line:rgba(240,233,218,0.12);
+  --line-soft:rgba(240,233,218,0.07);
+  --glass:rgba(21,18,14,0.82);
+  --card:#1e1a13;             /* solid dusk panel */
+  --card-hi:#241f17;
+  --string-glow-op:0.22;
+  --string-core-op:0.34;
+  --field:rgba(0,0,0,0.22);
+  --atmo:radial-gradient(120% 70% at 78% -8%, rgba(230,182,103,0.16), transparent 55%),radial-gradient(90% 55% at 12% 4%, rgba(239,85,56,0.10), transparent 50%),linear-gradient(180deg,#1d1813 0%,#15120e 38%,#110e0a 100%);
+  --vignette:radial-gradient(130% 110% at 50% 32%, transparent 52%, rgba(0,0,0,0.55) 100%);
+  --grain-op:0.05;--grain-blend:overlay;
+  --h1-grad:linear-gradient(170deg,#fdf6e7 0%,#e9dcc2 55%,#c9b894 100%);
+  --h1-glow:drop-shadow(0 2px 30px rgba(230,182,103,0.18));
+  /* type system — swappable via Tweaks */
+  --f-display:'Instrument Serif';
+  --f-body:'Newsreader';
+  --f-label:'Space Mono';
+}
+[data-type="garamond"]{
+  --f-display:'Cormorant Garamond';
+  --f-body:'EB Garamond';
+  --f-label:'Space Mono';
+}
+[data-type="modern"]{
+  --f-display:'Space Grotesk';
+  --f-body:'Hanken Grotesk';
+  --f-label:'Space Mono';
+}
+#string-glow-path{opacity:var(--string-glow-op)}
+#string-path{opacity:var(--string-core-op)}
+[data-theme="paper"]{
+  --night:#f3ede1;--night-2:#ece4d4;--paper:#211d17;--paper-dim:#4a4334;--muted:#8a8070;--muted-2:#a89c87;
+  --amber:#9d7531;--amber-soft:rgba(157,117,49,0.13);
+  --line:rgba(26,24,20,0.13);--line-soft:rgba(26,24,20,0.07);--glass:rgba(243,237,225,0.82);
+  --card:#fbf7ee;--card-hi:#fffdf6;--field:rgba(40,30,18,0.05);
+  --atmo:radial-gradient(120% 70% at 78% -8%, rgba(200,169,110,0.22), transparent 55%),radial-gradient(90% 55% at 12% 4%, rgba(192,57,43,0.06), transparent 50%),linear-gradient(180deg,#f7f2e7 0%,#f3ede1 40%,#efe7d8 100%);
+  --vignette:radial-gradient(130% 110% at 50% 32%, transparent 58%, rgba(120,96,56,0.10) 100%);
+  --grain-op:0.04;--grain-blend:multiply;
+  --h1-grad:linear-gradient(170deg,#2c261c 0%,#403725 60%,#5f5239 100%);
+  --h1-glow:drop-shadow(0 2px 18px rgba(157,117,49,0.16));
+}
+[data-theme="mist"]{
+  --night:#eceef0;--night-2:#e2e5e8;--paper:#1b2127;--paper-dim:#3e464f;--muted:#7b838b;--muted-2:#9ea7af;
+  --amber:#5a7884;--amber-soft:rgba(90,120,132,0.14);
+  --line:rgba(27,33,39,0.13);--line-soft:rgba(27,33,39,0.06);--glass:rgba(236,238,240,0.82);
+  --card:#f7f9fb;--card-hi:#ffffff;--field:rgba(30,40,50,0.05);
+  --atmo:radial-gradient(120% 70% at 78% -8%, rgba(120,150,165,0.20), transparent 55%),radial-gradient(90% 55% at 12% 4%, rgba(192,57,43,0.05), transparent 50%),linear-gradient(180deg,#f0f2f4 0%,#eceef0 40%,#e6e9ec 100%);
+  --vignette:radial-gradient(130% 110% at 50% 32%, transparent 58%, rgba(40,55,70,0.09) 100%);
+  --grain-op:0.035;--grain-blend:multiply;
+  --h1-grad:linear-gradient(170deg,#212931 0%,#33404a 60%,#485965 100%);
+  --h1-glow:drop-shadow(0 2px 18px rgba(90,120,132,0.16));
+}
+[data-theme="ivory"]{
+  --night:#f7f3ea;--night-2:#f0ebdf;--paper:#2b2018;--paper-dim:#544638;--muted:#9a8d7c;--muted-2:#b4a995;
+  --amber:#b1623a;--amber-soft:rgba(177,98,58,0.12);
+  --line:rgba(43,32,24,0.11);--line-soft:rgba(43,32,24,0.06);--glass:rgba(247,243,234,0.82);
+  --card:#fffdf7;--card-hi:#ffffff;--field:rgba(40,28,16,0.05);
+  --atmo:radial-gradient(120% 70% at 78% -8%, rgba(214,150,110,0.20), transparent 55%),radial-gradient(90% 55% at 12% 4%, rgba(192,57,43,0.06), transparent 50%),linear-gradient(180deg,#faf6ee 0%,#f7f3ea 40%,#f2ecdf 100%);
+  --vignette:radial-gradient(130% 110% at 50% 32%, transparent 58%, rgba(130,90,56,0.09) 100%);
+  --grain-op:0.04;--grain-blend:multiply;
+  --h1-grad:linear-gradient(170deg,#352519 0%,#4a3526 60%,#6b4a34 100%);
+  --h1-glow:drop-shadow(0 2px 18px rgba(177,98,58,0.16));
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--night);
+  color:var(--paper);
+  font-family:var(--f-body),Georgia,serif;
+  font-weight:300;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+  min-height:100svh;
+}
+body.ko{font-family:'Noto Serif KR',serif}
+/* ── dusk sky glow behind everything ───────────────────────── */
+.atmosphere{position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:var(--atmo);
+}
+.vignette{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:var(--vignette);}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:var(--grain-blend);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+/* ── red string of fate ────────────────────────────────────── */
+#page-string{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;overflow:visible}
+/* ── nav ───────────────────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
+  padding:0.95rem 1.4rem;padding-top:max(0.95rem,env(safe-area-inset-top));
+  background:var(--glass);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);
+  border-bottom:0.5px solid var(--line-soft)}
+.nav-logo{font-family:'Noto Serif JP',serif;font-size:1.05rem;font-weight:400;letter-spacing:0.14em;text-decoration:none;color:var(--paper);white-space:nowrap}
+.nav-right{display:flex;align-items:center;gap:1.1rem;flex-shrink:0}
+.nav-links{display:none;gap:1.4rem;list-style:none}
+.nav-links a{font-family:var(--f-label),monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;color:var(--muted);transition:color 0.18s}
+.nav-links a:hover{color:var(--paper)}
+/* mobile menu button (hidden on desktop) */
+.nav-menu-btn{display:flex;flex-direction:column;justify-content:center;gap:5px;width:42px;height:30px;background:transparent;border:0.5px solid var(--line);border-radius:999px;cursor:pointer;padding:0;flex-shrink:0;-webkit-appearance:none}
+.nav-menu-btn span{display:block;width:21px;height:1.5px;background:var(--paper);margin:0 auto;transition:transform .28s cubic-bezier(0.16,1,0.3,1),opacity .2s}
+.nav.menu-open .nav-menu-btn span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav.menu-open .nav-menu-btn span:nth-child(2){opacity:0}
+.nav.menu-open .nav-menu-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.lang-toggle{display:flex;border:0.5px solid var(--line);border-radius:999px;overflow:hidden;flex-shrink:0}
+.lang-btn{font-family:var(--f-label),monospace;font-size:10.5px;letter-spacing:0.1em;padding:5px 11px;background:transparent;border:none;cursor:pointer;color:var(--muted);transition:all 0.18s}
+.lang-btn.active{background:var(--paper);color:var(--night)}
+/* ── hero ──────────────────────────────────────────────────── */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:7.5rem 1.5rem 4rem;position:relative}
+.hero-eyebrow{font-family:var(--f-label),monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:2.4rem;display:flex;align-items:center;gap:0.7rem;line-height:1.5}
+.hero-eyebrow::before{content:'';width:18px;height:0.5px;background:var(--muted);flex-shrink:0}
+h1{font-family:'Noto Serif JP',serif;font-size:clamp(4.4rem,21vw,9rem);font-weight:400;letter-spacing:0.02em;line-height:0.98;margin-bottom:0.7rem;
+  background:var(--h1-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:var(--h1-glow)}
+.hero-translation{font-family:var(--f-label),monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:2.6rem}
+.hero-tagline{font-family:var(--f-display),serif;font-weight:400;font-size:clamp(1.9rem,8vw,2.9rem);line-height:1.12;color:var(--paper);margin-bottom:1rem;letter-spacing:0.005em;max-width:14ch}
+body.ko .hero-tagline{font-family:'Noto Serif KR',serif;font-weight:300;font-size:clamp(1.5rem,6.5vw,2.3rem);line-height:1.4}
+.hero-tagline em{font-style:italic;color:var(--amber)}
+body.ko .hero-tagline em{font-style:normal;color:var(--amber)}
+.hero-hint{font-family:var(--f-label),monospace;font-size:11px;color:var(--vermilion);margin:2.4rem 0 2.8rem;letter-spacing:0.06em;display:flex;align-items:center;gap:11px;line-height:1.5}
+.hero-hint::before{content:'';width:26px;height:1.5px;background:var(--vermilion);flex-shrink:0;box-shadow:0 0 8px var(--vermilion-glow)}
+.hero-actions{display:flex;flex-direction:column;gap:1.2rem;align-items:flex-start}
+.btn-primary{position:relative;background:var(--paper);color:var(--night);font-family:var(--f-display),serif;font-size:1.15rem;padding:0.85rem 2.3rem;text-decoration:none;letter-spacing:0.01em;border-radius:999px;transition:transform 0.25s cubic-bezier(0.16,1,0.3,1),box-shadow 0.25s;box-shadow:0 0 0 rgba(230,182,103,0)}
+body.ko .btn-primary{font-family:'Noto Serif KR',serif;font-weight:400;font-size:1rem}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(230,182,103,0.22)}
+.btn-ghost{font-family:var(--f-label),monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:0.5px solid var(--line);padding-bottom:3px;transition:color 0.18s,border-color 0.18s}
+.btn-ghost:hover{color:var(--paper);border-color:var(--paper)}
+/* ── sections ──────────────────────────────────────────────── */
+section{padding:4.5rem 1.5rem;border-top:0.5px solid var(--line-soft);position:relative}
+.sec-label{font-family:var(--f-label),monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:0.9rem;display:flex;align-items:center;gap:0.6rem}
+.sec-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.sec-heading{font-family:var(--f-display),serif;font-size:clamp(2rem,7vw,2.8rem);font-weight:400;line-height:1.08;margin-bottom:0.7rem;letter-spacing:0.005em}
+body.ko .sec-heading{font-family:'Noto Serif KR',serif;font-weight:400}
+.sec-subtitle{font-size:15.5px;line-height:1.7;color:var(--muted);margin-bottom:2.2rem;max-width:42ch}
+body.ko .sec-subtitle{font-size:14.5px}
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+/* ── tabs ──────────────────────────────────────────────────── */
+.tab-row{display:flex;margin-bottom:2.2rem;gap:0.5rem;flex-wrap:wrap}
+.tab{font-family:var(--f-label),monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:0.45rem 0.95rem;border:0.5px solid var(--line);border-radius:999px;background:transparent;transition:all 0.18s}
+.tab.active{color:var(--night);background:var(--paper);border-color:var(--paper)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+/* ── journal feed ──────────────────────────────────────────── */
+.feed{display:flex;flex-direction:column;gap:1.4rem}
+.entry-card{position:relative;background:var(--card);border:0.5px solid var(--line);border-radius:4px;overflow:hidden;
+  transition:transform 0.35s cubic-bezier(0.16,1,0.3,1),border-color 0.35s,background 0.35s;
+  animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both}
+.entry-card:hover{transform:translateY(-3px);border-color:var(--line);background:var(--card-hi)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.entry-photo-wrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden}
+.entry-photo{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.92) brightness(0.92)}
+.entry-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(17,14,10,0.6))}
+.entry-body{padding:1.4rem 1.4rem 1.3rem}
+.entry-lyric{font-family:var(--f-display),serif;font-size:1.32rem;font-style:italic;line-height:1.34;color:var(--paper);margin-bottom:1.1rem;position:relative;padding-left:0.95rem}
+body.ko .entry-lyric{font-family:'Noto Serif KR',serif;font-style:normal;font-weight:400;font-size:1.12rem}
+.entry-lyric::before{content:'';position:absolute;left:0;top:0.35em;bottom:0.2em;width:2px;background:var(--vermilion);box-shadow:0 0 8px var(--vermilion-glow);border-radius:2px}
+.entry-head{margin-bottom:0.75rem}
+.entry-song{font-family:var(--f-body),serif;font-weight:400;font-size:1.05rem;color:var(--paper);line-height:1.3}
+body.ko .entry-song{font-family:'Noto Serif KR',serif}
+.entry-artist{font-family:var(--f-label),monospace;font-size:11px;letter-spacing:0.04em;color:var(--muted);margin-top:0.25rem}
+.req-badge{font-family:var(--f-label),monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--vermilion);margin-right:0.45rem}
+.entry-emotion{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-label),monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);border:0.5px solid var(--amber-soft);background:var(--amber-soft);padding:4px 10px;border-radius:999px;margin-bottom:0.9rem}
+.entry-emotion i{width:5px;height:5px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.entry-note{font-size:14px;line-height:1.7;color:var(--paper-dim)}
+.entry-meta{margin-top:1rem;padding-top:0.85rem;border-top:0.5px solid var(--line-soft);font-family:var(--f-label),monospace;font-size:10px;letter-spacing:0.05em;color:var(--muted-2);display:flex;justify-content:space-between}
+.count-note{font-family:var(--f-label),monospace;font-size:11px;letter-spacing:0.05em;color:var(--muted);margin-top:1.6rem;padding-top:1.1rem;border-top:0.5px solid var(--line-soft)}
+.count-note strong{color:var(--amber);font-weight:700}
+.loading-msg,.empty-msg{font-family:var(--f-label),monospace;font-size:12px;color:var(--muted);padding:0.6rem 0;letter-spacing:0.03em}
+/* ── forms ─────────────────────────────────────────────────── */
+.form-card,.req-card{background:var(--card);border:0.5px solid var(--line);border-radius:6px;padding:2rem 1.5rem}
+.field{margin-bottom:1.6rem}
+label{display:block;font-family:var(--f-label),monospace;font-size:10.5px;font-weight:400;letter-spacing:0.13em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:0.65rem}
+body.ko label{letter-spacing:0.03em}
+input[type=text],textarea{width:100%;background:var(--field);border:0.5px solid var(--line);border-radius:4px;padding:0.8rem 0.95rem;
+  font-family:var(--f-body),serif;font-size:16px;font-weight:300;color:var(--paper);outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none}
+body.ko input[type=text],body.ko textarea{font-family:'Noto Serif KR',serif}
+input[type=text]::placeholder,textarea::placeholder{color:rgba(240,233,218,0.3)}
+input[type=text]:focus,textarea:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amber-soft)}
+textarea{resize:vertical;min-height:92px;line-height:1.65}
+.emotion-grid{display:flex;flex-wrap:wrap;gap:8px}
+.emotion-btn{background:var(--field);border:0.5px solid var(--line);padding:8px 14px;font-family:var(--f-label),monospace;font-size:11px;cursor:pointer;color:var(--muted);transition:all 0.18s;letter-spacing:0.04em;border-radius:999px;-webkit-appearance:none}
+body.ko .emotion-btn{font-family:'Noto Serif KR',serif;font-size:12px}
+.emotion-btn:hover{border-color:var(--amber);color:var(--amber)}
+.emotion-btn.active{background:var(--amber);border-color:var(--amber);color:var(--night)}
+.photo-upload{width:100%;aspect-ratio:3/2;background:var(--field);border:0.5px dashed var(--line);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.2s}
+.photo-upload:hover{border-color:var(--amber)}
+.photo-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-hint{font-family:var(--f-label),monospace;font-size:11px;color:var(--muted);text-align:center;pointer-events:none;letter-spacing:0.05em}
+.upload-hint small{display:block;font-size:10px;margin-top:5px;opacity:0.6}
+#preview-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.submit-btn{width:100%;background:var(--paper);color:var(--night);border:none;padding:1.1rem;font-family:var(--f-display),serif;font-size:1.2rem;letter-spacing:0.01em;cursor:pointer;margin-top:0.5rem;border-radius:999px;transition:transform 0.25s cubic-bezier(0.16,1,0.3,1),box-shadow 0.25s;-webkit-appearance:none}
+body.ko .submit-btn{font-family:'Noto Serif KR',serif;font-weight:400;font-size:1.05rem}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(230,182,103,0.2)}
+.submit-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;box-shadow:none}
+.success-msg{display:none;text-align:center;padding:3.5rem 1rem;font-family:var(--f-display),serif;font-size:1.4rem;line-height:1.55;color:var(--paper)}
+body.ko .success-msg{font-family:'Noto Serif KR',serif;font-weight:300;font-size:1.15rem}
+.req-intro{font-size:14.5px;line-height:1.75;color:var(--muted);margin-bottom:1.9rem;font-family:var(--f-display),serif;font-style:italic;font-size:1.05rem}
+body.ko .req-intro{font-family:'Noto Serif KR',serif;font-style:normal;font-size:14px;font-weight:300}
+.req-fine{font-family:var(--f-label),monospace;font-size:10.5px;color:var(--muted-2);line-height:1.75;margin-bottom:1.2rem;border-left:1.5px solid var(--vermilion);padding-left:0.85rem;letter-spacing:0.02em}
+body.ko .req-fine{font-family:'Noto Serif KR',serif;letter-spacing:0}
+/* ── footer ────────────────────────────────────────────────── */
+footer{padding:4rem 1.5rem 5rem;padding-bottom:max(5rem,env(safe-area-inset-bottom));border-top:0.5px solid var(--line-soft);text-align:center}
+.footer-kanji{font-family:'Noto Serif JP',serif;font-size:1.7rem;font-weight:400;letter-spacing:0.16em;margin-bottom:0.5rem;color:var(--paper)}
+.footer-sub{font-family:var(--f-label),monospace;font-size:10px;letter-spacing:0.08em;color:var(--muted);line-height:2}
+.footer-about{display:inline-block;margin-top:1.8rem;font-family:var(--f-label),monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:0.5px solid var(--line);padding-bottom:3px;transition:color 0.18s,border-color 0.18s}
+.footer-about:hover{color:var(--amber);border-color:var(--amber)}
+/* mobile nav dropdown */
+@media(max-width:767px){
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--glass);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);
+    border-bottom:0.5px solid var(--line-soft);padding:0.3rem 1.4rem 0.9rem;
+    opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .25s,transform .25s;display:flex}
+  .nav.menu-open .nav-links{opacity:1;transform:none;pointer-events:auto}
+  .nav-links a{display:block;padding:0.95rem 0;font-size:12.5px;letter-spacing:0.18em;border-bottom:0.5px solid var(--line-soft)}
+  .nav-links li:last-child a{border-bottom:none}
+}
+@media(min-width:768px){
+  .nav{padding-left:3rem;padding-right:3rem}
+  .nav-links{display:flex}
+  .nav-menu-btn{display:none}
+  .hero{padding-left:4rem;padding-right:4rem}
+  section,footer{padding-left:4rem;padding-right:4rem}
+  .feed{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:start}
+  .form-card,.req-card{max-width:620px;padding:2.5rem 2.25rem}
+  .sec-subtitle{font-size:16.5px}
+}
+@media(min-width:1100px){
+  .hero{padding-left:6rem}
+  section{padding-left:6rem;padding-right:6rem}
+  .feed{grid-template-columns:repeat(3,1fr)}
+  .feed-wrap,.sec-head-wide{max-width:1200px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<div class="atmosphere"></div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<svg id="page-string" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="string-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path id="string-glow-path" fill="none" stroke="#ef5538" stroke-width="2.2" stroke-linecap="round" opacity="0.5" filter="url(#string-glow)"/>
+  <path id="string-path" fill="none" stroke="#ff7c63" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+</svg>
+<script>
+(function(){
+  function draw(){
+    var W=window.innerWidth,H=window.innerHeight;
+    var d='M -8 '+(H*0.05)+' C '+(W*0.18)+' '+(H*0.22)+', '+(W*0.04)+' '+(H*0.58)+', '+(W*0.46)+' '+(H*0.54)+' C '+(W*0.78)+' '+(H*0.5)+', '+(W*0.92)+' '+(H*0.82)+', '+(W+8)+' '+(H*0.96);
+    document.getElementById('string-path').setAttribute('d',d);
+    document.getElementById('string-glow-path').setAttribute('d',d);
+  }
+  draw();window.addEventListener('resize',draw);
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  [['string-path',1700],['string-glow-path',1700]].forEach(function(s){
+    var p=document.getElementById(s[0]);
+    if(reduce)return;
+    p.style.strokeDasharray=s[1];p.style.strokeDashoffset=s[1];
+    setTimeout(function(){p.style.transition='stroke-dashoffset 3.2s cubic-bezier(0.16,1,0.3,1)';p.style.strokeDashoffset=0;},180);
+  });
+})();
+</script>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">一期一会</a>
+  <div class="nav-right">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#journal" data-en="journal" data-ko="저널">journal</a></li>
+      <li><a href="#share" data-en="share" data-ko="기록하기">share</a></li>
+      <li><a href="#request" data-en="request" data-ko="신청하기">request</a></li>
+      <li><a href="about.html" data-en="about" data-ko="소개">about</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ko')">KR</button>
+    </div>
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="menu" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow" data-en="N25 · third floor · mechanical engineering corridor" data-ko="N25 · 3층 · 기계공학과 복도">N25 · third floor · mechanical engineering corridor</p>
+  <h1>一期一会</h1>
+  <p class="hero-translation" data-en="one chance in a lifetime" data-ko="일생에 단 한 번의 만남">one chance in a lifetime</p>
+  <p class="hero-tagline" data-en="A window. A song. <em>A fleeting moment.</em>" data-ko="창문. 노래. <em>그리고 스쳐 가는 순간.</em>">A window. A song. <em>A fleeting moment.</em></p>
+  <p class="hero-hint" data-en="follow the red string — find the headphones" data-ko="빨간 실을 따라가세요 — 헤드폰을 찾아보세요">follow the red string — find the headphones</p>
+  <div class="hero-actions">
+    <a href="#share" class="btn-primary" data-en="leave your moment" data-ko="지금 이 순간을 남기세요">leave your moment</a>
+    <a href="#journal" class="btn-ghost" data-en="read what others left" data-ko="다른 사람들의 기록 보기">read what others left</a>
+  </div>
+</section>
+
+<section id="journal">
+  <div class="sec-head-wide reveal">
+    <p class="sec-label" data-en="the journal" data-ko="저널">the journal</p>
+    <h2 class="sec-heading" data-en="Traces left at the window" data-ko="창가에 남겨진 흔적들">Traces left at the window</h2>
+  </div>
+  <div class="feed-wrap">
+    <div class="tab-row reveal">
+      <button class="tab active" onclick="switchTab('all',this)" data-en="all" data-ko="전체">all</button>
+      <button class="tab" onclick="switchTab('photos',this)" data-en="with photos" data-ko="사진 포함">with photos</button>
+      <button class="tab" onclick="switchTab('requests',this)" data-en="requests" data-ko="신청곡">requests</button>
+    </div>
+    <div class="tab-panel active" id="tab-all"><div class="feed" id="feed-all"></div><p class="count-note" id="count-note"></p></div>
+    <div class="tab-panel" id="tab-photos"><div class="feed" id="feed-photos"></div></div>
+    <div class="tab-panel" id="tab-requests"><div class="feed" id="feed-requests"></div></div>
+  </div>
+</section>
+
+<section id="share">
+  <div class="sec-head-wide reveal">
+    <p class="sec-label" data-en="leave a trace" data-ko="흔적 남기기">leave a trace</p>
+    <h2 class="sec-heading" data-en="Add your moment" data-ko="지금 이 순간을 기록하세요">Add your moment</h2>
+    <p class="sec-subtitle" data-en="You put on the headphones.<br>What did you see? What did you feel?" data-ko="헤드폰을 착용했나요?<br>무엇이 보였나요? 어떤 감정이 느껴졌나요?">You put on the headphones.<br>What did you see? What did you feel?</p>
+  </div>
+  <div id="form-wrap" class="form-card reveal">
+    <div class="field">
+      <label data-en="song title" data-ko="노래 제목">song title</label>
+      <input type="text" id="inp-song" data-en-placeholder="what was playing?" data-ko-placeholder="어떤 노래가 흘렀나요?" placeholder="what was playing?">
+    </div>
+    <div class="field">
+      <label data-en="a lyric that feels right, right now" data-ko="지금 이 순간 와닿는 가사 한 줄">a lyric that feels right, right now</label>
+      <textarea id="inp-lyric" data-en-placeholder="optional — paste a line that landed" data-ko-placeholder="선택 사항 — 마음에 닿은 가사를 붙여넣으세요" placeholder="optional — paste a line that landed"></textarea>
+    </div>
+    <div class="field">
+      <label data-en="how does it feel here?" data-ko="여기서 어떤 기분이 드나요?">how does it feel here?</label>
+      <div class="emotion-grid">
+        <button class="emotion-btn" onclick="toggleEmotion(this)" data-en="nostalgic" data-ko="그리운">nostalgic</button>
+        <button class="emotion-btn" onclick="toggleEmotion(this)" data-en="calm" data-ko="고요한">calm</button>
+        <button class="emotion-btn" onclick="toggleEmotion(this)" data-en="restless" data-ko="불안한">restless</button>
+        <button class="emotion-btn" onclick="toggleEmotion(this)" data-en="lonely" data-ko="외로운">lonely</button>
+        <button class="emotion-btn" onclick="toggleEmotion(this)" data-en="hopeful" data-ko="희망찬">hopeful</button>
+        <button class="emotion-btn" onclick="toggleEmotion(this)" data-en="distracted" data-ko="산만한">distracted</button>
+        <button class="emotion-btn" id="btn-other" onclick="toggleEmotion(this)" data-en="something else" data-ko="다른 감정">something else</button>
+      </div>
+      <input type="text" id="inp-emotion-custom" data-en-placeholder="describe the feeling..." data-ko-placeholder="감정을 직접 적어보세요..." placeholder="describe the feeling..." style="display:none;margin-top:0.75rem">
+    </div>
+    <div class="field" style="margin-top:1.25rem">
+      <label data-en="a note (optional)" data-ko="메모 (선택 사항)">a note (optional)</label>
+      <textarea id="inp-note" data-en-placeholder="what does the view look like today?" data-ko-placeholder="오늘 창밖 풍경은 어떤가요?" placeholder="what does the view look like today?"></textarea>
+    </div>
+    <div class="field">
+      <label data-en="photograph the window" data-ko="창문을 사진으로 담아보세요">photograph the window</label>
+      <div class="photo-upload">
+        <img id="preview-img" alt="">
+        <div class="upload-hint" data-en="tap to photograph" data-ko="탭하여 촬영하기">tap to photograph<small data-en="the window, the view, anything" data-ko="창문, 풍경, 무엇이든">the window, the view, anything</small></div>
+        <input type="file" accept="image/*" capture="environment" onchange="handlePhoto(this)">
+      </div>
+    </div>
+    <div class="field">
+      <label data-en="your name or alias" data-ko="이름 또는 별명">your name or alias</label>
+      <input type="text" id="inp-name" data-en-placeholder="anonymous is fine" data-ko-placeholder="익명도 괜찮아요" placeholder="anonymous is fine">
+    </div>
+    <button class="submit-btn" id="submit-btn" onclick="submitEntry()" data-en="leave this here" data-ko="이 순간을 남기기">leave this here</button>
+  </div>
+  <div class="success-msg" id="success-msg"></div>
+</section>
+
+<section id="request">
+  <div class="sec-head-wide reveal">
+    <p class="sec-label" data-en="grow the player" data-ko="플레이어 채우기">grow the player</p>
+    <h2 class="sec-heading" data-en="Request a song" data-ko="노래 신청하기">Request a song</h2>
+  </div>
+  <div class="req-card reveal">
+    <p class="req-intro" data-en="Is there a song you think should be on the mp3 player? Approved songs get downloaded, named after their best lyric or the feeling they left, and added to the player at the window." data-ko="이 창문에 어울리는 노래가 있나요? 승인된 곡은 가사나 느낌을 이름으로 저장되어 창가의 mp3 플레이어에 추가됩니다.">Is there a song you think should be on the mp3 player? Approved songs get downloaded, named after their best lyric or the feeling they left, and added to the player at the window.</p>
+    <div class="field">
+      <label data-en="song + artist" data-ko="노래 + 아티스트">song + artist</label>
+      <input type="text" id="req-song" data-en-placeholder="e.g. Café by HYUKOH" data-ko-placeholder="예: HYUKOH의 Café" placeholder="e.g. Café by HYUKOH">
+    </div>
+    <div class="field">
+      <label data-en="your favorite lyric — or, if instrumental, the feeling it left" data-ko="좋아하는 가사 한 줄 — 또는 연주곡이라면, 그 곡이 남긴 감정">your favorite lyric — or, if instrumental, the feeling it left</label>
+      <input type="text" id="req-lyric" data-en-placeholder="this becomes the file name on the mp3 player" data-ko-placeholder="이 문구가 mp3 플레이어의 파일 이름이 됩니다" placeholder="this becomes the file name on the mp3 player">
+    </div>
+    <div class="field">
+      <label data-en="why does this song belong here?" data-ko="이 노래가 이 창가에 어울리는 이유는?">why does this song belong here?</label>
+      <textarea id="req-why" data-en-placeholder="why does this song belong at this window?" data-ko-placeholder="이 창문과 어울리는 이유를 적어보세요." placeholder="why does this song belong at this window?"></textarea>
+    </div>
+    <div class="field">
+      <label data-en="your name" data-ko="이름">your name</label>
+      <input type="text" id="req-name" data-en-placeholder="anonymous is fine" data-ko-placeholder="익명도 괜찮아요" placeholder="anonymous is fine">
+    </div>
+    <p class="req-fine" data-en="Approved requests are downloaded, renamed to your lyric, and added to the mp3 player at the window — so the next person who picks up the headphones plays a song someone else left for them." data-ko="승인된 신청곡은 가사 이름으로 저장되어 창가 mp3에 추가됩니다. 다음 사람이 헤드폰을 쓰면 당신이 남긴 노래를 듣게 됩니다.">Approved requests are downloaded, renamed to your lyric, and added to the mp3 player at the window — so the next person who picks up the headphones plays a song someone else left for them.</p>
+    <button class="submit-btn" id="req-submit-btn" onclick="submitRequest()" data-en="send request" data-ko="신청하기">send request</button>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-kanji">一期一会</p>
+  <p class="footer-sub" data-en="one chance in a lifetime<br>N25 · third floor · mechanical engineering corridor" data-ko="일생에 단 한 번의 만남<br>N25 · 3층 · 기계공학과 복도">one chance in a lifetime<br>N25 · third floor · mechanical engineering corridor</p>
+  <a href="about.html" class="footer-about" data-en="about this project" data-ko="프로젝트 소개">about this project</a>
+</footer>
+
+<script>
+const SUPA_URL='https://vcundkcrmgjdqcdkkvti.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZjdW5ka2NybWdqZHFjZGtrdnRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4OTkyMTcsImV4cCI6MjA5NjQ3NTIxN30.F9HEl0YyZHLT-RMdXCPfOb__bkbLf6oBC4RDFhTO98Q';
+
+const T={
+  en:{empty:'nothing yet — be the first.',moments_1:' moment left at this window',moments_n:' moments left at this window',req_badge:'request',now:'just now',m:'m ago',h:'h ago',d:'d ago',alert_song:'what song is playing?',alert_req:'which song?',saving:'saving...',saved_title:'your moment is saved.',saved_sub:'someone else will put on the headphones after you and stand at the same window.',req_saved:'request saved — if approved, this song will be added to the mp3 player at the window.',loading:'loading...'},
+  ko:{empty:'아직 기록이 없어요 — 첫 번째가 되어보세요.',moments_1:' 개의 순간이 남겨졌습니다',moments_n:' 개의 순간이 남겨졌습니다',req_badge:'신청곡',now:'방금 전',m:'분 전',h:'시간 전',d:'일 전',alert_song:'어떤 노래가 흘렀나요?',alert_req:'어떤 노래인가요?',saving:'저장 중...',saved_title:'당신의 순간이 기록되었습니다.',saved_sub:'다음 사람도 같은 창문 앞에 서서 헤드폰을 착용할 거예요.',req_saved:'신청이 저장되었습니다. 승인되면 창가 mp3에 추가됩니다.',loading:'불러오는 중...'}
+};
+
+let currentLang=localStorage.getItem('ichigo_lang')||'en';
+
+function ago(ts){
+  const s=(Date.now()-ts)/1000,t=T[currentLang];
+  if(s<60)return t.now;
+  if(s<3600)return Math.round(s/60)+t.m;
+  if(s<86400)return Math.round(s/3600)+t.h;
+  return Math.round(s/86400)+t.d;
+}
+
+function esc(str){return String(str==null?'':str).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+async function fetchEntries(){
+  const res=await fetch(`${SUPA_URL}/rest/v1/entries?order=ts.desc`,{headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY}});
+  if(!res.ok)return[];
+  return await res.json();
+}
+
+async function insertEntry(entry){
+  const res=await fetch(`${SUPA_URL}/rest/v1/entries`,{method:'POST',headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=representation'},body:JSON.stringify(entry)});
+  return res.ok;
+}
+
+function card(e){
+  const d=document.createElement('div');
+  d.className='entry-card';
+  const ph=e.photo?`<div class="entry-photo-wrap"><img class="entry-photo" src="${esc(e.photo)}" alt=""></div>`:'';
+  const ly=e.lyric?`<p class="entry-lyric">${esc(e.lyric)}</p>`:'';
+  const em=e.emotion?`<span class="entry-emotion"><i></i>${esc(e.emotion)}</span>`:'';
+  const nt=e.note?`<p class="entry-note">${esc(e.note)}</p>`:'';
+  const rb=e.type==='request'?`<span class="req-badge">${T[currentLang].req_badge} ·</span>`:'';
+  const art=e.artist&&e.artist!=='unknown'?`<p class="entry-artist">${esc(e.artist)}</p>`:'';
+  d.innerHTML=`${ph}<div class="entry-body">${ly}<div class="entry-head"><p class="entry-song">${rb}${esc(e.song)}</p>${art}</div>${em}${nt}<div class="entry-meta"><span>${esc(e.name||'anonymous')}</span><span>${ago(e.ts)}</span></div></div>`;
+  return d;
+}
+
+async function render(){
+  const t=T[currentLang];
+  const fa=document.getElementById('feed-all'),fp=document.getElementById('feed-photos'),fr=document.getElementById('feed-requests');
+  fa.innerHTML=`<p class="loading-msg">${t.loading}</p>`;
+  fp.innerHTML='';fr.innerHTML='';
+  const all=await fetchEntries();
+  fa.innerHTML='';
+  let pc=0,rc=0;
+  all.forEach(e=>{
+    fa.appendChild(card(e));
+    if(e.photo){fp.appendChild(card(e));pc++}
+    if(e.type==='request'){fr.appendChild(card(e));rc++}
+  });
+  const empty=`<p class="empty-msg">${t.empty}</p>`;
+  if(!all.length)fa.innerHTML=empty;
+  if(!pc)fp.innerHTML=empty;
+  if(!rc)fr.innerHTML=empty;
+  const cn=document.getElementById('count-note');
+  if(all.length)cn.innerHTML=`<strong>${all.length}</strong>${all.length===1?t.moments_1:t.moments_n}`;
+  else cn.innerHTML='';
+}
+
+function compressPhoto(file,maxW,quality,cb){
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const img=new Image();
+    img.onload=function(){
+      const canvas=document.createElement('canvas');
+      let w=img.width,h=img.height;
+      if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      cb(canvas.toDataURL('image/jpeg',quality));
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+let photoData=null;
+function handlePhoto(inp){
+  const f=inp.files[0];if(!f)return;
+  compressPhoto(f,1200,0.75,function(data){
+    photoData=data;
+    const img=document.getElementById('preview-img');
+    img.src=data;img.style.display='block';
+    document.querySelector('.upload-hint').style.display='none';
+  });
+}
+
+let selEmotion='';
+function toggleEmotion(btn){
+  document.querySelectorAll('.emotion-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selEmotion=btn.getAttribute('data-'+currentLang)||btn.textContent;
+  const custom=document.getElementById('inp-emotion-custom');
+  if(btn.id==='btn-other'){custom.style.display='block';custom.focus();}
+  else{custom.style.display='none';custom.value='';}
+}
+
+async function submitEntry(){
+  const t=T[currentLang];
+  const song=document.getElementById('inp-song').value.trim();
+  if(!song){alert(t.alert_song);return;}
+  const btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent=t.saving;
+  const customEmotion=document.getElementById('inp-emotion-custom').value.trim();
+  const entry={song,artist:'',lyric:document.getElementById('inp-lyric').value.trim(),emotion:customEmotion||selEmotion,note:document.getElementById('inp-note').value.trim(),name:document.getElementById('inp-name').value.trim()||'anonymous',ts:Date.now(),photo:photoData||null,type:'entry'};
+  const ok=await insertEntry(entry);
+  if(ok){
+    document.getElementById('form-wrap').style.display='none';
+    const sm=document.getElementById('success-msg');
+    sm.style.display='block';
+    sm.innerHTML=`${t.saved_title}<br><span style="font-size:14px;font-weight:300;color:var(--muted)">${t.saved_sub}</span>`;
+    render();
+    setTimeout(()=>document.getElementById('journal').scrollIntoView({behavior:'smooth'}),900);
+  } else {
+    btn.disabled=false;btn.textContent=btn.getAttribute('data-'+currentLang)||'leave this here';
+    alert('something went wrong — please try again.');
+  }
+}
+
+async function submitRequest(){
+  const t=T[currentLang];
+  const song=document.getElementById('req-song').value.trim();
+  if(!song){alert(t.alert_req);return;}
+  const btn=document.getElementById('req-submit-btn');
+  btn.disabled=true;btn.textContent=t.saving;
+  const entry={song,artist:'',lyric:document.getElementById('req-lyric').value.trim(),emotion:'',note:document.getElementById('req-why').value.trim(),name:document.getElementById('req-name').value.trim()||'anonymous',ts:Date.now(),photo:null,type:'request'};
+  const ok=await insertEntry(entry);
+  btn.disabled=false;btn.textContent=btn.getAttribute('data-'+currentLang)||'send request';
+  if(ok){
+    document.getElementById('req-song').value='';
+    document.getElementById('req-lyric').value='';
+    document.getElementById('req-why').value='';
+    document.getElementById('req-name').value='';
+    alert(t.req_saved);
+    render();
+  } else {
+    alert('something went wrong — please try again.');
+  }
+}
+
+function switchTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+function toggleMenu(){
+  const nav=document.querySelector('.nav');
+  const open=nav.classList.toggle('menu-open');
+  const btn=document.getElementById('navMenuBtn');
+  if(btn)btn.setAttribute('aria-expanded',open?'true':'false');
+}
+function closeMenu(){
+  document.querySelector('.nav').classList.remove('menu-open');
+  const btn=document.getElementById('navMenuBtn');
+  if(btn)btn.setAttribute('aria-expanded','false');
+}
+document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',closeMenu));
+
+function applyLang(lang){
+  document.body.classList.toggle('ko',lang==='ko');
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===(lang==="ko"?"KR":lang.toUpperCase())));
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'||el.tagName==='BUTTON')return;
+    const val=el.getAttribute('data-'+lang);
+    if(val!==null)el.innerHTML=val;
+  });
+  document.querySelectorAll('button[data-en]').forEach(el=>{
+    const val=el.getAttribute('data-'+lang);
+    if(val!==null&&!el.disabled)el.textContent=val;
+  });
+  document.querySelectorAll('[data-en-placeholder]').forEach(el=>{
+    el.placeholder=el.getAttribute('data-'+lang+'-placeholder')||el.getAttribute('data-en-placeholder');
+  });
+  const hint=document.querySelector('.upload-hint');
+  if(hint&&hint.style.display!=='none'){
+    const main=hint.getAttribute('data-'+lang)||hint.getAttribute('data-en');
+    const small=hint.querySelector('small');
+    if(hint.childNodes[0])hint.childNodes[0].textContent=main;
+    if(small)small.textContent=small.getAttribute('data-'+lang)||small.getAttribute('data-en');
+  }
+}
+
+function setLang(lang){
+  currentLang=lang;
+  localStorage.setItem('ichigo_lang',lang);
+  applyLang(lang);
+  render();
+}
+
+// scroll reveal
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+
+// init
+applyLang(currentLang);
+document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===(currentLang==="ko"?"KR":currentLang.toUpperCase())));
+render();
+</script>
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+function _revType(dt){return dt==='garamond'?'garamond':dt==='modern'?'modern':'twilight';}
+let _it='garamond',_is='subtle',_ip='dusk';
+try{var _t=localStorage.getItem('ichigo_type');_it=_t?_revType(_t):'garamond';_is=localStorage.getItem('ichigo_string')||'subtle';var _th=localStorage.getItem('ichigo_theme')||'';_ip=(_th==='paper'||_th==='mist'||_th==='ivory')?_th:'dusk';}catch(e){}
+const TWEAK_DEFAULTS={palette:_ip,typeface:_it,string:_is};
+const TYPE_MAP={twilight:'',garamond:'garamond',modern:'modern'};
+const THEME_MAP={dusk:'',paper:'paper',mist:'mist',ivory:'ivory'};
+const STRING_MAP={subtle:[0.22,0.34],medium:[0.4,0.62],vivid:[0.6,0.92]};
+function Panel(){
+  const [t,setTweak]=useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(()=>{
+    const th=THEME_MAP[t.palette]||'';
+    if(th)document.documentElement.dataset.theme=th; else delete document.documentElement.dataset.theme;
+    try{localStorage.setItem('ichigo_theme',th);}catch(e){}
+  },[t.palette]);
+  React.useEffect(()=>{
+    const dt=TYPE_MAP[t.typeface]||'';
+    if(dt)document.documentElement.dataset.type=dt; else delete document.documentElement.dataset.type;
+    try{localStorage.setItem('ichigo_type',dt);}catch(e){}
+  },[t.typeface]);
+  React.useEffect(()=>{
+    const m=STRING_MAP[t.string]||STRING_MAP.medium;
+    document.documentElement.style.setProperty('--string-glow-op',m[0]);
+    document.documentElement.style.setProperty('--string-core-op',m[1]);
+    try{localStorage.setItem('ichigo_string',t.string);}catch(e){}
+  },[t.string]);
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Palette" />
+      <TweakRadio label="Theme" value={t.palette} options={['dusk','paper','mist','ivory']} onChange={(v)=>setTweak('palette',v)} />
+      <TweakSection label="Typeface" />
+      <TweakRadio label="Pairing" value={t.typeface} options={['twilight','garamond','modern']} onChange={(v)=>setTweak('typeface',v)} />
+      <TweakSection label="Red string" />
+      <TweakRadio label="Visibility" value={t.string} options={['subtle','medium','vivid']} onChange={(v)=>setTweak('string',v)} />
+    </TweaksPanel>
+  );
+}
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<Panel/>);
+</script>
+</body>
+</html>
